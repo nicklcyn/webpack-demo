@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Weppack do it
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  # push 到 master 分支時會觸發
+  push:
+    branches: [ master ]
+  # 排程每天 UTC 16:30 (台灣時間 0:30) 時觸發
+  # 語法可上 crontab.guru 查詢
+  # schedule:
+  # - cron: 30 16 * * *
+  # pull_request:
+  #   branches: [ master ]
+jobs:
+  npm-install:
+    name: webpack build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+    
+    - name: npm install, build and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm test
