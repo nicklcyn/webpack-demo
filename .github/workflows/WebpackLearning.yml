@@ -5,10 +5,9 @@ name: Weppack do it
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  workflow_dispatch:
   # push 到 master 分支時會觸發
-  #push:
-  #  branches: [ master ]
+  push:
+    branches: [ actions-ci ]
   # 排程每天 UTC 16:30 (台灣時間 0:30) 時觸發
   # 語法可上 crontab.guru 查詢
   # schedule:
