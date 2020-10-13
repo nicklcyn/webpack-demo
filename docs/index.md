@@ -14,12 +14,10 @@
   + development
   + production
   + none
- 
+  
+# 實際演練
 
-#實際演練
-
-##Installation
->webpack 4+ 需要再安裝 webpack-cli
+## Installation
 
 新建webpack專案
 ```sh
@@ -29,7 +27,9 @@ npm init -y
 npm i -D webpack-cli webpack
 ```
 
-安装 beta 版本
+>webpack 4+ 需要再安裝 webpack-cli
+
+也可以選擇安装 beta 版本
 ```sh
 npm install --save-dev webpack@next
 # 或特定的 tag/分支
@@ -37,8 +37,10 @@ npm install --save-dev webpack/webpack#<tagname/branchname>
 ```
 
 
-### Bundle
+## Bundle
 
 ```sh
+mkdir src
+touch index.js
 npx webpack
 ```
