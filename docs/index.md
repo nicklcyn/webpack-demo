@@ -12,12 +12,12 @@
   webpack 打包輸出的target file，可以產生多個，預設的Output是`./dist/main.js`
 
 ## Loaders
-
-  用於檔案處理，
-
+  webpack本身只能打包Javascript文件，對於其他資源例如 css，圖片，或者其他的語法集比如jsx，是沒有辦法載入的。 這就需要對應的loader將資源轉化，載入進來。
+  loader就是一個export出來的function。
+  
 ## Plugins
-
-
+  plugin 可以在 webpack 運行到某個時刻的時候，去做一些事情。
+  plugin 需要首先被引入，在配置的時候需要 new Pluginin（）生成一個對象。
 
 ## Mode
   每個環境相對應的webpack優化，webpack對應的環境有
@@ -83,4 +83,5 @@ npm i -D sass-loader css-loader
 ```
 
 ## Plugins
-
+  html-webpack-plugin
+  clean-webpack-plugin
