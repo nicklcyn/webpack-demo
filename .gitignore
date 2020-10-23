@@ -123,5 +123,7 @@ dist
 # Ignore all local history of files
 .history
 
+### Mac
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node
-n
