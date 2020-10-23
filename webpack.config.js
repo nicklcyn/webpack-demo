@@ -1,4 +1,3 @@
-const { constants } = require('buffer')
 const path = require('path')
 
 
@@ -8,7 +7,13 @@ module.exports = {
         login: './src/login.js'
     },
     output: {
-        filename: '[name].[hash].js',
-        path : path.resolve(__dirname, './dist')
-    }
+        filename: '[name].js',
+        path: path.resolve(__dirname, './dist')
+    },
+    module: {
+        rules: [{
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
+        }, ],
+    },
 }

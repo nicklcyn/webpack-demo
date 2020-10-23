@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/nicklcyn/webpack-demo#readme",
   "devDependencies": {
+    "css-loader": "^5.0.0",
+    "style-loader": "^2.0.0",
     "webpack": "^5.2.0",
     "webpack-cli": "^4.1.0"
   }
