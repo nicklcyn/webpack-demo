@@ -1,10 +1,10 @@
-Webpack 本身其實也只是個打包工具而已，大部分的人在建置起始專案時都會選擇使用 CLI 工具（像是 Vue CLI、Create React App），而這些工具都已經配置好 Webpack 了，不需要開發者自己配置。當有配置的需求時，通常也只會更改少部分的設定，並不會通盤了解整個 Webpack 的運作。  
+Webpack 本身其實也只是JavaScript 應用程式的模組打包工具而已，將所有的資源都視為模組。它將從 Entry 模組開始尋找相依模組以製成[相依圖](https://webpack.js.org/concepts/dependency-graph/)(dependency graph)，依照相依圖解析並處理每一個模組。
 
-webpack 是 JavaScript 應用程式的模組打包器，所有的資源都視為模組。它將從 Entry 模組開始尋找相依模組以製成[相依圖](https://webpack.js.org/concepts/dependency-graph/)(dependency graph)，依照相依圖解析並處理每一個模組，。
+若遇到非 JavaScript(JSON) 的檔案就交給 Loaders 幫忙轉換，最後建立一個或多個 bundle 檔案並輸出在 Output 路徑下，這些 bundle 是可以直接被瀏覽器載入。
 
-，遇到非 JavaScript(JSON) 的檔案就交給 Loaders 幫忙轉換，最後建立一個或多個 bundle 檔案並輸出在 Output 路徑下，這些 bundle 是可以直接被瀏覽器載入。
+Webpack 利用了整個打包流程解決了現代前端工程的模組化及新技術的引入問題，並且還可以做代碼的優化、檢查、分割...等等的處理，使得開發的應用程式層級可以向上提升。
 
-webpack 利用了整個打包流程解決了現代前端工程的模組化及新技術的引入問題，並且還可以做代碼的優化、檢查、分割...等等的處理，使得開發的應用程式層級可以向上提升。
+大部分的人在建置起始專案時都會選擇使用 CLI 工具（像是 Vue CLI、Create React App），而這些工具都已經配置好 Webpack 了，不需要開發者自己配置。當有配置的需求時，通常也只會更改少部分的設定，並不會通盤了解整個 Webpack 的運作。  
 
 ## Entry Points
 開發者要跟 webpack 說明哪個模組是**建置相依圖時的起點**，因此需要配置 entry 屬性。
@@ -41,7 +41,7 @@ mkdir webpack-demo
 cd webpack-demo
 npm init -y
 ```
-### *package.json*
+### 修改*package.json*
 ```json
 {
   "name": "webpack-demo",
@@ -49,7 +49,8 @@ npm init -y
   "description": "Demo for webpack",
   "repository": "https://github.com/nicklcyn/webpack-demo.git",
   "license": "MIT",
-  "main": "index.js",
+- "main": "index.js",
++ "private": true,   //設定npm 專案不公開
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -70,9 +71,10 @@ npm install webpack webpack-cli --save-dev
   "description": "Demo for webpack",
   "repository": "https://github.com/nicklcyn/webpack-demo.git",
   "license": "MIT",
-  "main": "index.js",
+  "private": true, 
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
++   "build": "webpack"     //新增script build
   },
   "devDependencies": {
     "webpack": "^4.44.2",
@@ -90,10 +92,11 @@ npm install --save-dev webpack/webpack#<tagname/branchname>
 ```sh
 mkdir src
 touch ./src/index.js #增加預設檔案
-npx webpack
+npm run webpack
 ```
 
 # Webpack Configuration
+### *webpack.config.js* 各選項
 ```javascript
 {
   mode: "production", // 模式：none|production|development，預設值為 "production"
