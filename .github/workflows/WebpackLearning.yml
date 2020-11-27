@@ -41,6 +41,7 @@ jobs:
           path: |
             dist/
             !dist/**/*.md
+          if-no-files-found: error
 #       - name: Archive code coverage results
 #         uses: actions/upload-artifact@v2
 #         with:
