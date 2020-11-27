@@ -39,7 +39,7 @@ jobs:
         with:
           name: dist-without-markdown
           path: |
-            dist
+            dist/
             !dist/**/*.md
 #       - name: Archive code coverage results
 #         uses: actions/upload-artifact@v2
